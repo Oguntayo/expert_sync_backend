@@ -17,7 +17,8 @@ Professional Node.js/Express API for managing expert sessions and real-time book
 ## Setup & Installation
 
 1. **Clone the repository**:
-   ```bash
+
+   ```bash   
    git clone https://github.com/Oguntayo/expert_sync_backend.git
    cd expert_sync_backend
    ```
@@ -29,7 +30,10 @@ Professional Node.js/Express API for managing expert sessions and real-time book
 
 3. **Configure Environment**:
    Create a `.env` file in the root directory:
-   ```env
+   ```
+   cp .env.example .env
+
+   env
    MONGODB_URI=your_mongodb_connection_string
    PORT=5000
    ```
@@ -43,5 +47,7 @@ Professional Node.js/Express API for managing expert sessions and real-time book
    npm start
    ```
 
-## 📚 API Documentation
+## API Documentation
 Once the server is running, visit `http://localhost:5000/api-docs` to explore the interactive API documentation.
+
+**Live Url** https://expertsyncbackend.vercel.app
