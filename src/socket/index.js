@@ -13,13 +13,11 @@ const initSocket = (server) => {
     io.on('connection', (socket) => {
         console.log('New client connected:', socket.id);
 
-        
         socket.on('joinExpertRoom', (expertId) => {
             socket.join(`expert_${expertId}`);
             console.log(`Socket ${socket.id} joined room expert_${expertId}`);
         });
 
-        
         socket.on('joinUserRoom', (userId) => {
             socket.join(`user_${userId}`);
             console.log(`Socket ${socket.id} joined room user_${userId}`);

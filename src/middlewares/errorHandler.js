@@ -4,19 +4,16 @@ const errorHandler = (err, req, res, next) => {
     let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     let message = err.message;
 
-    
     if (err.name === 'CastError') {
         message = 'Resource not found';
         statusCode = 404;
     }
 
-    
     if (err.code === 11000) {
         message = 'Duplicate field value entered';
         statusCode = 400;
     }
 
-    
     if (err.isJoi) {
         message = err.details.map((detail) => detail.message).join(', ');
         statusCode = 400;

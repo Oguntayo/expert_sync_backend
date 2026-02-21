@@ -6,7 +6,6 @@ const { initSocket } = require('./socket');
 
 const server = http.createServer(app);
 
-
 initSocket(server);
 
 const PORT = process.env.PORT || 5000;

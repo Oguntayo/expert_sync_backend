@@ -2,14 +2,10 @@ const Booking = require('../models/Booking');
 const Expert = require('../models/Expert');
 const { getIO } = require('../socket');
 
-
-
-
 const createBooking = async (req, res, next) => {
     try {
         const { expert, name, email, phone, date, timeSlot, notes } = req.body;
 
-        
         const expertObj = await Expert.findById(expert);
         if (!expertObj) {
             return res.status(404).json({ success: false, message: 'Expert not found' });
@@ -49,14 +45,12 @@ const createBooking = async (req, res, next) => {
 
         const bookingData = { expert, name, email, phone, date, timeSlot, bookedBlocks, notes };
 
-        
         if (req.user) {
             bookingData.user = req.user._id;
         }
 
         const booking = await Booking.create(bookingData);
 
-        
         try {
             const io = getIO();
             io.to(`expert_${expert}`).emit('slotBooked', {
@@ -80,9 +74,6 @@ const createBooking = async (req, res, next) => {
     }
 };
 
-
-
-
 const getBookings = async (req, res, next) => {
     try {
         const { email } = req.query;
@@ -103,9 +94,6 @@ const getBookings = async (req, res, next) => {
         next(error);
     }
 };
-
-
-
 
 const getAllBookings = async (req, res, next) => {
     try {
@@ -131,9 +119,6 @@ const getAllBookings = async (req, res, next) => {
         next(error);
     }
 };
-
-
-
 
 const updateBookingStatus = async (req, res, next) => {
     try {

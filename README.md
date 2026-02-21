@@ -2,11 +2,9 @@
 
 Professional Node.js/Express API for managing expert sessions and real-time bookings.
 
-## 🚀 Features
-- **Booking Management**: Create, view, and manage expert sessions.
-- **Expert Directory**: Comprehensive API for listing and searching experts.
-- **Real-time Updates**: Integrated with Socket.IO for live slot updates.
-- **Validation**: Strict request validation using Joi.
+##  Functionalites
+- **Real-time Updates**: Integrated with Socket.IO for live updates.
+- **Validation**: Strict request validation .
 - **API Documentation**: Interactive Swagger UI at `/api-docs`.
 
 ## 🛠 Tech Stack
@@ -16,7 +14,7 @@ Professional Node.js/Express API for managing expert sessions and real-time book
 - **Communication**: Socket.IO
 - **Documentation**: Swagger/OpenAPI
 
-## 📦 Setup & Installation
+## Setup & Installation
 
 1. **Clone the repository**:
    ```bash

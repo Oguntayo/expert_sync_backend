@@ -1,9 +1,6 @@
 const Expert = require('../models/Expert');
 const Booking = require('../models/Booking');
 
-
-
-
 const getExperts = async (req, res, next) => {
     try {
         const { page = 1, limit = 10, category, search } = req.query;
@@ -37,9 +34,6 @@ const getExperts = async (req, res, next) => {
     }
 };
 
-
-
-
 const getExpert = async (req, res, next) => {
     try {
         const expert = await Expert.findById(req.params.id);
@@ -48,7 +42,6 @@ const getExpert = async (req, res, next) => {
             return res.status(404).json({ success: false, message: 'Expert not found' });
         }
 
-        
         const today = new Date().toISOString().split('T')[0];
         const bookedSlots = await Booking.find({
             expert: expert._id,

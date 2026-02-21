@@ -9,7 +9,6 @@ router.post('/', validate(bookingValidation.createBooking), createBooking);
 router.get('/', validate(bookingValidation.getBookings), getBookings);
 router.get('/all', getAllBookings);
 
-
 router.patch('/:id/status', validate(bookingValidation.updateBookingStatus), updateBookingStatus);
 
 module.exports = router;
