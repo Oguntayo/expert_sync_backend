@@ -50,4 +50,4 @@ Node.js/Express API for managing expert sessions and real-time bookings.
 ## API Documentation
 Once the server is running, visit `http://localhost:5000/api-docs` to explore the interactive API documentation.
 
-**Live Url** https://expertsyncbackend.vercel.app
+**Live Url** https://expertsyncbackend.vercel.app/api-docs
