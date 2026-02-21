@@ -10,11 +10,31 @@ const errorHandler = require('./middlewares/errorHandler');
 const app = express();
 
 const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Swagger UI assets from CDN for Vercel compatibility
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+const JS_URLS = [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-bundle.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-standalone-preset.js"
+];
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+    customCssUrl: CSS_URL,
+    customJs: JS_URLS
+}));
 
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            "script-src": ["'self'", "'unsafe-inline'", "cdnjs.cloudflare.com"],
+            "style-src": ["'self'", "'unsafe-inline'", "cdnjs.cloudflare.com"],
+            "img-src": ["'self'", "data:", "cdnjs.cloudflare.com"],
+        },
+    },
+}));
 
 app.get('/', (req, res) => {
     res.json({
