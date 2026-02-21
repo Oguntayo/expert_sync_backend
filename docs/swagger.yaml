@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: Expert Session Booking System API
+  version: 1.0.0
+  description: API documentation for the Real-Time Expert Session Booking System
+servers:
+  - url: http://localhost:5000/api
+    description: Development Server
+components:
+  schemas:
+    Expert:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        experience:
+          type: number
+        rating:
+          type: number
+        bio:
+          type: string
+    Booking:
+      type: object
+      properties:
+        expert:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        date:
+          type: string
+          example: '2026-02-25'
+        timeSlot:
+          type: string
+          example: '10:00-11:00'
+        notes:
+          type: string
+        status:
+          type: string
+          enum: [Pending, Confirmed, Completed]
+
+paths:
+  /experts:
+    get:
+      summary: Get all experts
+      tags: [Experts]
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+        - in: query
+          name: category
+          schema:
+            type: string
+        - in: query
+          name: search
+          schema:
+            type: string
+      responses:
+        200:
+          description: A list of experts
+  /experts/{id}:
+    get:
+      summary: Get expert details by ID
+      tags: [Experts]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expert details and booked slots
+  /bookings:
+    post:
+      summary: Create a new booking
+      tags: [Bookings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [expert, name, email, date, timeSlot]
+              properties:
+                expert:
+                  type: string
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                date:
+                  type: string
+                timeSlot:
+                  type: string
+                notes:
+                  type: string
+      responses:
+        201:
+          description: Booking created
+    get:
+      summary: Get bookings by user email
+      tags: [Bookings]
+      parameters:
+        - in: query
+          name: email
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: A list of bookings for the given email
+  /bookings/all:
+    get:
+      summary: Get all bookings (Admin only)
+      tags: [Bookings]
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: limit
+          schema:
+            type: integer
+      responses:
+        200:
+          description: A list of all bookings
+  /bookings/{id}/status:
+    patch:
+      summary: Update booking status (Admin only)
+      tags: [Bookings]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  enum: [Pending, Confirmed, Completed]
+      responses:
+        200:
+          description: Status updated
