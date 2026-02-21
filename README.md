@@ -1,18 +1,18 @@
 # ExpertSync Backend
 
-Professional Node.js/Express API for managing expert sessions and real-time bookings.
+Node.js/Express API for managing expert sessions and real-time bookings.
 
 ##  Functionalites
 - **Real-time Updates**: Integrated with Socket.IO for live updates.
 - **Validation**: Strict request validation .
 - **API Documentation**: Interactive Swagger UI at `/api-docs`.
 
-## 🛠 Tech Stack
+## Tech Stack
 - **Runtime**: Node.js
 - **Framework**: Express.js
-- **Database**: MongoDB (Mongoose)
+- **Database**: MongoDB 
 - **Communication**: Socket.IO
-- **Documentation**: Swagger/OpenAPI
+- **Documentation**: Swagger
 
 ## Setup & Installation
 
